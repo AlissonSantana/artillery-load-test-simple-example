@@ -1,0 +1,18 @@
+config:
+  target: "https://test-api.k6.io/public/crocodiles"
+  phases:
+    - duration: 10
+      arrivalRate: 5
+      name: Warm up
+    - duration: 20
+      arrivalRate: 5
+      rampTo: 50
+      name: Ramp up load
+    - duration: 30
+      arrivalRate: 50
+      name: Sustained load
+scenarios:
+  - name: "Get crocodiles"
+    flow:
+      - get:
+          url: "/"
